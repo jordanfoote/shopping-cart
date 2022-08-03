@@ -91,6 +91,7 @@ function updateCartTotal() {
     var cartItemContainer = document.getElementsByClassName('cart-items')[0];
     var cartRows = cartItemContainer.getElementsByClassName('cart-row');
     var total = 0;
+    var totalQuantity = 0;
 
     for (var i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i];
@@ -99,7 +100,10 @@ function updateCartTotal() {
         var price = parseFloat(priceElement.innerText.replace('$', ''));
         var quantity = quantityElement.value;
         total = total + (price * quantity);
+        totalQuantity++;
+        totalQuantity = totalQuantity * quantity;
     }
     total = Math.round(total * 100) / 100;
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
+    document.getElementsByClassName('total-cart-items')[0].innerText = ' (' + totalQuantity + ')';
 }
